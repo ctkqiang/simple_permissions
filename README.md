@@ -68,3 +68,19 @@ enum PermissionStatus { notDetermined, restricted, denied, authorized }
   /// Get iOs permission status 
   static Future<PermissionStatus> getPermissionStatus(Permission permission)
 ```
+
+
+
+
+<b>$Support</b><br/>
+Email: [johnmelodyme@yandex.com](mailto:johnmelodyme@yandex.com )
+
+<b>Donate</b>
+
+### Wechat: 
+![](https://raw.githubusercontent.com/johnmelodyme/ShortestPathAlgorithm/master/assets/wechat.png)
+
+<br />
+
+### Bitcoin:
+![](https://github.com/johnmelodyme/ShortestPathAlgorithm/raw/master/assets/btc.jpg)
