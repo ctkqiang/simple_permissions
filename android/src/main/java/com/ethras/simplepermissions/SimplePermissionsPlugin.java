@@ -9,7 +9,6 @@ import android.provider.Settings;
 import androidx.core.content.ContextCompat;
 import androidx.core.app.ActivityCompat;
 import android.util.Log;
-
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -45,39 +44,60 @@ public class SimplePermissionsPlugin implements MethodCallHandler, PluginRegistr
         String method = call.method;
         String permission;
         switch (method) {
+
             case "getPlatformVersion":
                 result.success("Android " + android.os.Build.VERSION.RELEASE);
                 break;
+
             case "getPermissionStatus":
+                int value;
+
                 permission = call.argument("permission");
+
                 if (MOTION_SENSOR.equalsIgnoreCase(permission)) {
                     result.success(3);
                     break;
                 }
-                int value = checkPermission(permission) ? 3 : 2;
+
+                if (checkPermission(permission)) {
+                    value = 3;
+                } else {
+                    value = 2;
+                }
+                
                 result.success(value);
                 break;
+
             case "checkPermission":
                 permission = call.argument("permission");
+
                 if (MOTION_SENSOR.equalsIgnoreCase(permission)) {
                     result.success(true);
                     break;
                 }
+
                 result.success(checkPermission(permission));
                 break;
+
             case "requestPermission":
                 permission = call.argument("permission");
+
                 if (MOTION_SENSOR.equalsIgnoreCase(permission)) {
                     result.success(3);
                     break;
                 }
+
                 this.result = result;
+
                 requestPermission(permission);
+
                 break;
+
             case "openSettings":
                 openSettings();
                 result.success(true);
                 break;
+
             default:
                 result.notImplemented();
                 break;
@@ -94,53 +114,77 @@ public class SimplePermissionsPlugin implements MethodCallHandler, PluginRegistr
     }
 
     private String getManifestPermission(String permission) {
+        // * More Permission Will Be implemented;
         String res;
         switch (permission) {
-            case "RECORD_AUDIO":
-                res = Manifest.permission.RECORD_AUDIO;
-                break;
-            case "CALL_PHONE":
-                res = Manifest.permission.CALL_PHONE;
-                break;
-            case "CAMERA":
-                res = Manifest.permission.CAMERA;
-                break;
-            case "WRITE_EXTERNAL_STORAGE":
-                res = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-                break;
-            case "READ_EXTERNAL_STORAGE":
-                res = Manifest.permission.READ_EXTERNAL_STORAGE;
-                break;
-            case "READ_PHONE_STATE":
-                res = Manifest.permission.READ_PHONE_STATE;
-                break;
             case "ACCESS_FINE_LOCATION":
                 res = Manifest.permission.ACCESS_FINE_LOCATION;
                 break;
+
             case "ACCESS_COARSE_LOCATION":
                 res = Manifest.permission.ACCESS_COARSE_LOCATION;
                 break;
-            case "WHEN_IN_USE_LOCATION":
-                res = Manifest.permission.ACCESS_FINE_LOCATION;
-                break;
+                
             case "ALWAYS_LOCATION":
                 res = Manifest.permission.ACCESS_FINE_LOCATION;
                 break;
+            
+            case "RECORD_AUDIO":
+                res = Manifest.permission.RECORD_AUDIO;
+                break;
+
+            case "CALL_PHONE":
+                res = Manifest.permission.CALL_PHONE;
+                break;
+
+            case "CAMERA":
+                res = Manifest.permission.CAMERA;
+                break;
+
+            case "WRITE_EXTERNAL_STORAGE":
+                res = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+                break;
+
+            case "READ_EXTERNAL_STORAGE":
+                res = Manifest.permission.READ_EXTERNAL_STORAGE;
+                break;
+
+            case "READ_PHONE_STATE":
+                res = Manifest.permission.READ_PHONE_STATE;
+                break;
+
+            case "WHEN_IN_USE_LOCATION":
+                res = Manifest.permission.ACCESS_FINE_LOCATION;
+                break;
+
             case "READ_CONTACTS":
                 res = Manifest.permission.READ_CONTACTS;
                 break;
+
             case "SEND_SMS":
                 res = Manifest.permission.SEND_SMS;
                 break;
+
             case "READ_SMS":
                 res = Manifest.permission.READ_SMS;
                 break;
+
             case "VIBRATE":
                 res = Manifest.permission.VIBRATE;
                 break;
+
             case "WRITE_CONTACTS":
                 res = Manifest.permission.WRITE_CONTACTS;
                 break;
+
+            case "FOREGROUND_SERVICE":
+                res = Manifest.permission.FOREGROUND_SERVICE;
+                break;
+
+            case "MODIFY_AUDIO_SETTINGS":
+                res = Manifest.permission.MODIFY_AUDIO_SETTINGS;
+                break;
+
             default:
                 res = "ERROR";
                 break;
@@ -151,7 +195,7 @@ public class SimplePermissionsPlugin implements MethodCallHandler, PluginRegistr
     private void requestPermission(String permission) {
         Activity activity = registrar.activity();
         permission = getManifestPermission(permission);
-        Log.i("SimplePermission", "Requesting permission : " + permission);
+        Log.d("John Melody : ==> ", "Requesting permission : " + permission);
         String[] perm = {permission};
         ActivityCompat.requestPermissions(activity, perm, 0);
     }
@@ -159,7 +203,7 @@ public class SimplePermissionsPlugin implements MethodCallHandler, PluginRegistr
     private boolean checkPermission(String permission) {
         Activity activity = registrar.activity();
         permission = getManifestPermission(permission);
-        Log.i("SimplePermission", "Checking permission : " + permission);
+        Log.d("John Melody : ==>", "Checking permission : " + permission);
         return PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(activity, permission);
     }
 
@@ -177,12 +221,12 @@ public class SimplePermissionsPlugin implements MethodCallHandler, PluginRegistr
                     status = 3;
                 } else {
                     //set to never ask again
-                    Log.e("SimplePermission", "set to never ask again" + permission);
+                    Log.e("John Melody : ==>", "Set to never ask again" + permission);
                     status = 4;
                 }
             }
         }
-        Log.i("SimplePermission", "Requesting permission status : " + status);
+        Log.i("John Melody : ==>", "Requesting permission status : " + status);
         Result result = this.result;
         this.result = null;
         if(result != null) {
