@@ -24,11 +24,15 @@ class SimplePermissions {
     final status = await _channel.invokeMethod(
         "requestPermission", {"permission": getPermissionString(permission)});
 
-    return status is int
-        ? intToPermissionStatus(status)
-        : status is bool
-            ? (status ? PermissionStatus.authorized : PermissionStatus.denied)
-            : PermissionStatus.notDetermined;
+    if (status is int) {
+      return intToPermissionStatus(status);
+    } else {
+      if (status is bool) {
+        return (status ? PermissionStatus.authorized : PermissionStatus.denied);
+      } else {
+        return PermissionStatus.notDetermined;
+      }
+    }
   }
 
   /// Open app settings on Android and iOs
@@ -81,7 +85,9 @@ enum Permission {
   SendSMS,
   Vibrate,
   WriteContacts,
-  AccessMotionSensor
+  AccessMotionSensor,
+  ForegroundService,
+  ModifyAudioSetting
 }
 
 /// Permissions status enum (iOs: notDetermined, restricted, denied, authorized, deniedNeverAsk)
@@ -100,53 +106,77 @@ String getPermissionString(Permission permission) {
     case Permission.CallPhone:
       res = "CALL_PHONE";
       break;
+
     case Permission.Camera:
       res = "CAMERA";
       break;
+
     case Permission.PhotoLibrary:
       res = "PHOTO_LIBRARY";
       break;
+
     case Permission.RecordAudio:
       res = "RECORD_AUDIO";
       break;
+
     case Permission.WriteExternalStorage:
       res = "WRITE_EXTERNAL_STORAGE";
       break;
+
     case Permission.ReadExternalStorage:
       res = "READ_EXTERNAL_STORAGE";
       break;
+
     case Permission.ReadPhoneState:
       res = "READ_PHONE_STATE";
       break;
+
     case Permission.AccessFineLocation:
       res = "ACCESS_FINE_LOCATION";
       break;
+
     case Permission.AccessCoarseLocation:
       res = "ACCESS_COARSE_LOCATION";
       break;
+
     case Permission.WhenInUseLocation:
       res = "WHEN_IN_USE_LOCATION";
       break;
+
     case Permission.AlwaysLocation:
       res = "ALWAYS_LOCATION";
       break;
+
     case Permission.ReadContacts:
       res = "READ_CONTACTS";
       break;
+
     case Permission.SendSMS:
       res = "SEND_SMS";
       break;
+
     case Permission.ReadSms:
       res = "READ_SMS";
       break;
+
     case Permission.Vibrate:
       res = "VIBRATE";
       break;
+
     case Permission.WriteContacts:
       res = "WRITE_CONTACTS";
       break;
+
     case Permission.AccessMotionSensor:
       res = "MOTION_SENSOR";
+      break;
+
+    case Permission.ForegroundService:
+      res = "FOREGROUND_SERVICE";
+      break;
+
+    case Permission.ModifyAudioSetting:
+      res =  "MODIFY_AUDIO_SETTINGS";
       break;
   }
   return res;
