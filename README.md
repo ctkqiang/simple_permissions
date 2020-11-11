@@ -17,35 +17,25 @@ and Info.plist.
 
 ```dart
 enum Permission {
-  // Microphone
   RecordAudio,
-
-  // Camera
+  CallPhone,
   Camera,
-
-  // Read External Storage (Android)
-  ReadExternalStorage
-
-  // Write External Storage (Android)
+  PhotoLibrary,
   WriteExternalStorage,
-
-  // Access Coarse Location (Android) / When In Use iOS
+  ReadExternalStorage,
+  ReadPhoneState,
   AccessCoarseLocation,
-
-  // Access Fine Location (Android) / When In Use iOS
   AccessFineLocation,
-
-  // Access Fine Location (Android) / When In Use iOS
   WhenInUseLocation,
-
-  // Access Fine Location (Android) / Always Location iOS
-  AlwaysLocation
-
-  // Write contacts (Android) / Contacts iOS
-  WriteContacts
-
-  // Read contacts (Android) / Contacts iOS
-  ReadContacts
+  AlwaysLocation,
+  ReadContacts,
+  ReadSms,
+  SendSMS,
+  Vibrate,
+  WriteContacts,
+  AccessMotionSensor,
+  ForegroundService,
+  ModifyAudioSetting
 }
 ```
 
