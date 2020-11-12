@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/services.dart';
 
 class SimplePermissions {
@@ -53,14 +52,19 @@ class SimplePermissions {
     switch (status) {
       case 0:
         return PermissionStatus.notDetermined;
+
       case 1:
         return PermissionStatus.restricted;
+
       case 2:
         return PermissionStatus.denied;
+
       case 3:
         return PermissionStatus.authorized;
+
       case 4:
         return PermissionStatus.deniedNeverAsk;
+
       default:
         return PermissionStatus.notDetermined;
     }
@@ -69,25 +73,94 @@ class SimplePermissions {
 
 /// Enum of all available [Permission]
 enum Permission {
-  RecordAudio,
+  AcceptHandover,
+  AccessBackgroundLocation,
+  AccessCheckinProperties,
+  AccessFineLocation,
+  AccessCoarseLocation,
+  AccessLocationExtraCommands,
+  AlwaysLocation,
+  AccessMediaLocation,
+  AccessNetworkState,
+  AccessNotificationPolicy,
+  AccessWifiState,
+  AccountManager,
+  ActivityRecognition,
+  AddVoiceMail,
+  AnswerPhoneCalls,
+  AccessMotionSensor,
+  BatteryStats,
+  BindAccessibilityService,
+  BindAppWidget,
+  BindAutoFillService,
+  BindCallRedirectionService,
+  BindCarrierMessagingClientService,
+  BindCarrierMessagingService,
+  BindCarrierServices,
+  BindChooserTargetService,
+  BindConditionProviderService,
+  BindControls,
+  BindDeviceAdmin,
+  BindDreamService,
+  BindInCallService,
+  BindInputMethod,
+  BindNfcService,
+  BindNotificationListenerService,
+  BindPrintService,
+  BindQuickAccessWalletService,
+  BindQuickSettingsTile,
+  BindRemoteViews,
+  BindScreeningService,
+  BindTelecomConnectionService,
+  BindTextService,
+  BindTvInput,
+  BindVoiceInteraction,
+  BindVRListenerService,
+  Bluetooth,
+  BlutoothAdmin,
+  BluetoothPrivileged,
+  BodySensors,
+  BroadcastSMS,
   CallPhone,
+  CallPrivileged,
   Camera,
+  CaptureAudioOutput,
+  ChangeComponentEnabledState,
+  ChangeNetworkState,
+  ClearAppCache,
+  ControlLocationUpdates,
+  ForegroundService,
+  GetAccountsPrivileged,
+  GlobalSearch,
+  Internet,
+  KillBackgroundProcesses,
+  ManageDocuments,
+  MediaContentControl,
+  ModifyAudioSettings,
+  NFC,
+  NFCPreferedPaymentInfo,
+  NFCTransactionEvent,
   PhotoLibrary,
-  WriteExternalStorage,
+  ReadCalendar,
+  ReadCallLog,
+  RecordAudio,
   ReadExternalStorage,
   ReadPhoneState,
-  AccessCoarseLocation,
-  AccessFineLocation,
-  WhenInUseLocation,
-  AlwaysLocation,
+  ReadPrecisePhoneState,
   ReadContacts,
   ReadSms,
+  RequestCompanionRunInBackground,
+  RequestCompanionUseDataInBackground,
   SendSMS,
+  SetAlarm,
+  SmsFinancialTransactions,
+  UseBiomatric,
+  UseFingeprint,
+  UseSip,
   Vibrate,
   WriteContacts,
-  AccessMotionSensor,
-  ForegroundService,
-  ModifyAudioSetting
+  WhenInUseLocation,
+  WriteExternalStorage
 }
 
 /// Permissions status enum (iOs: notDetermined, restricted, denied, authorized, deniedNeverAsk)
@@ -103,6 +176,14 @@ enum PermissionStatus {
 String getPermissionString(Permission permission) {
   String res;
   switch (permission) {
+    case Permission.AcceptHandover:
+      res = "ACCEPT_HANDOVER";
+      break;
+
+    case Permission.AccessBackgroundLocation:
+      res = "ACCESS_BACKGROUND_LOCATION";
+      break;
+
     case Permission.CallPhone:
       res = "CALL_PHONE";
       break;
@@ -176,7 +257,7 @@ String getPermissionString(Permission permission) {
       break;
 
     case Permission.ModifyAudioSetting:
-      res =  "MODIFY_AUDIO_SETTINGS";
+      res = "MODIFY_AUDIO_SETTINGS";
       break;
   }
   return res;
