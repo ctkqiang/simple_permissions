@@ -6,6 +6,11 @@ import CoreLocation
 import CoreMotion
 import Contacts
 
+/*
+* https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW1
+*/
+
+
 public class SwiftSimplePermissionsPlugin: NSObject, FlutterPlugin, CLLocationManagerDelegate {
     var whenInUse = false
     var result: FlutterResult? = nil
