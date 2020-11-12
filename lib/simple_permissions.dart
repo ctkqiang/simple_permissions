@@ -256,7 +256,7 @@ String getPermissionString(Permission permission) {
       res = "FOREGROUND_SERVICE";
       break;
 
-    case Permission.ModifyAudioSetting:
+    case Permission.ModifyAudioSettings:
       res = "MODIFY_AUDIO_SETTINGS";
       break;
   }
