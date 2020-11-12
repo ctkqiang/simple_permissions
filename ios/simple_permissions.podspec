@@ -3,14 +3,14 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'simple_permissions'
-  s.version          = '0.0.1'
+  s.version          = '1.1.1'
   s.summary          = 'A new flutter plugin project.'
   s.description      = <<-DESC
 A new flutter plugin project.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Ethras' => 'vladimirmbassi@gmail.com' }
+  s.author           = { 'Johnmelodyme' => 'johnmelodyme@yandex.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'

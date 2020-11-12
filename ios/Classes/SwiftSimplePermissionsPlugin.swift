@@ -46,19 +46,6 @@ public class SwiftSimplePermissionsPlugin: NSObject, FlutterPlugin, CLLocationMa
             
         case "getPlatformVersion":
             result("iOS " + UIDevice.current.systemVersion)
-//   @depecrated:
-//        case "openSettings":
-//            if let url = URL(string: UIApplicationOpenSettingsURLString) {
-//                if UIApplication.shared.canOpenURL(url) {
-//                    if #available(iOS 9.0, *) {
-//                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//                        result(true)
-//                    } else {
-//                        // Fallback on earlier versions
-//                        result(FlutterMethodNotImplemented)
-//                    }
-//                }
-//            }
             
             
         default:
